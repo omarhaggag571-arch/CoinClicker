@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Coin Clicker</title>
 
@@ -14,177 +14,209 @@
 
 <body>
 
-<!-- Rebirth Panel -->
+<div id="page">
 
-<div id="rebirthPanel">
+    <!-- LEFT SIDE -->
 
-<h2>♻️ Rebirth</h2>
+    <div id="game">
 
-<p>
+        <header id="topBar">
 
-Rebirths
+            <h1>🪙 Coin Clicker</h1>
 
-<br>
+            <div id="stats">
 
-<span id="rebirths">
+                <div class="stat">
 
-0
+                    💰
 
-</span>
+                    <span id="coins">
 
-</p>
+                        0 Coins
 
-<p>
+                    </span>
 
-Coin Boost
+                </div>
 
-<br>
+                <div class="stat">
 
-<span id="boost">
+                    ⚡
 
-1.0x
+                    Power
 
-</span>
+                    <span id="power">
 
-</p>
+                        1
 
-<p>
+                    </span>
 
-Cost
+                </div>
 
-<br>
+            </div>
 
-<span id="rebirthCost">
+        </header>
 
-1000
+        <div id="coinArea">
 
-</span>
+            <button id="coinButton">
 
-</p>
+                🪙
 
-<button id="rebirthButton">
+            </button>
 
-REBIRTH
+            <div id="floating"></div>
 
-</button>
+        </div>
 
-</div>
+        <div id="bottomPanels">
 
-<!-- Main Game -->
+            <!-- Upgrade -->
 
-<div id="game">
+            <div class="panel">
 
-<h1>🪙 Coin Clicker</h1>
+                <h2>
 
-<h2 id="coins">
+                    ⬆ Upgrade
 
-0 Coins
+                </h2>
 
-</h2>
+                <p>
 
-<button id="coinButton">
+                    Cost
 
-🪙
+                    <span id="cost">
 
-</button>
+                        50
 
-<div id="floating"></div>
+                    </span>
 
-<!-- Upgrade -->
+                </p>
 
-<div class="panel">
+                <button id="upgrade">
 
-<h2>
+                    Upgrade
 
-⬆ Upgrade
+                </button>
 
-</h2>
+                <button id="reset">
 
-<p>
+                    Reset Progress
 
-Click Power
+                </button>
 
-<span id="power">
+            </div>
 
-1
+            <!-- Egg -->
 
-</span>
+            <div class="panel">
 
-</p>
+                <h2>
 
-<p>
+                    🥚 Egg
 
-Upgrade Cost
+                </h2>
 
-<span id="cost">
+                <p>
 
-50
+                    Cost
 
-</span>
+                    <span id="eggCost">
 
-</p>
+                        100
 
-<button id="upgrade">
+                    </span>
 
-Upgrade
+                </p>
 
-</button>
+                <button id="eggButton">
 
-<button id="reset">
+                    Buy Egg
 
-🔴 Reset Progress
+                </button>
 
-</button>
+            </div>
 
-</div>
+            <!-- Pets -->
 
-<!-- Egg -->
+            <div class="panel" id="petsPanel">
 
-<div class="panel">
+                <h2>
 
-<h2>
+                    🐾 Pets
 
-🥚 Egg
+                </h2>
 
-</h2>
+                <div id="petList">
 
-<p>
+                    No Pets
 
-Egg Cost
+                </div>
 
-<span id="eggCost">
+            </div>
 
-100
+        </div>
 
-</span>
+    </div>
 
-</p>
+    <!-- RIGHT SIDE -->
 
-<button id="eggButton">
+    <aside id="rebirthPanel">
 
-Buy Egg
+        <h2>
 
-</button>
+            ♻️ Rebirth
 
-</div>
+        </h2>
 
-<!-- Pets -->
+        <p>
 
-<div class="panel">
+            Rebirths
 
-<h2>
+            <br>
 
-🐾 Pets
+            <span id="rebirths">
 
-</h2>
+                0
 
-<div id="petList">
+            </span>
 
-No Pets
+        </p>
 
-</div>
+        <p>
 
-</div>
+            Coin Boost
+
+            <br>
+
+            <span id="boost">
+
+                1.0x
+
+            </span>
+
+        </p>
+
+        <p>
+
+            Cost
+
+            <br>
+
+            <span id="rebirthCost">
+
+                1000
+
+            </span>
+
+        </p>
+
+        <button id="rebirthButton">
+
+            REBIRTH
+
+        </button>
+
+    </aside>
 
 </div>
 
