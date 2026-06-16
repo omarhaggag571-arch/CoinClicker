@@ -6,6 +6,10 @@ let coins = 0;
 let power = 1;
 let cost = 50;
 
+let rebirths = 0;
+let rebirthCost = 1000;
+let coinMultiplier = 1;
+
 const coinsText = document.getElementById("coins");
 const powerText = document.getElementById("power");
 const costText = document.getElementById("cost");
@@ -14,21 +18,30 @@ const coinButton = document.getElementById("coinButton");
 const upgradeButton = document.getElementById("upgrade");
 const resetButton = document.getElementById("reset");
 
+const rebirthButton = document.getElementById("rebirthButton");
+const rebirthText = document.getElementById("rebirths");
+const rebirthCostText = document.getElementById("rebirthCost");
+const boostText = document.getElementById("boost");
+
 const floating = document.getElementById("floating");
 
-// Load saved data
 loadGame();
+
+if(typeof loadPets==="function"){
+    loadPets();
+}
+
 updateUI();
 
 // ----------------------------
 // Clicking
 // ----------------------------
 
-coinButton.onclick = function () {
+coinButton.onclick = function(){
 
-    coins += power;
+    coins += Math.floor(power * coinMultiplier);
 
-    createFloatingText("+" + power);
+    createFloatingText("+" + Math.floor(power * coinMultiplier));
 
     updateUI();
 
@@ -40,9 +53,9 @@ coinButton.onclick = function () {
 // Upgrade
 // ----------------------------
 
-upgradeButton.onclick = function () {
+upgradeButton.onclick = function(){
 
-    if (coins < cost) return;
+    if(coins < cost) return;
 
     coins -= cost;
 
@@ -57,13 +70,67 @@ upgradeButton.onclick = function () {
 };
 
 // ----------------------------
-// Reset Progress
+// Rebirth
 // ----------------------------
 
-resetButton.onclick = function () {
+rebirthButton.onclick = function(){
 
-    if (!confirm("Are you sure you want to reset ALL progress?"))
+    if(coins < rebirthCost){
+
+        alert("You need " + rebirthCost + " coins!");
+
         return;
+
+    }
+
+    const yes = confirm(
+"WARNING!\n\nIf you rebirth your Coins, Click Power, Pets and Egg Progress will disappear!\n\nBut you'll permanently earn 1.1x MORE coins!\n\nContinue?"
+);
+
+    if(!yes) return;
+
+    rebirths++;
+
+    coinMultiplier *= 1.1;
+
+    rebirthCost = Math.ceil(rebirthCost * 1.2);
+
+    coins = 0;
+    power = 1;
+    cost = 50;
+
+    if(typeof pets !== "undefined"){
+        pets.length = 0;
+        localStorage.setItem("pets","[]");
+
+        if(typeof drawPets==="function"){
+            drawPets();
+        }
+    }
+
+    if(typeof eggCost !== "undefined"){
+        eggCost = 100;
+
+        const eggCostText=document.getElementById("eggCost");
+
+        if(eggCostText){
+            eggCostText.textContent=eggCost;
+        }
+    }
+
+    updateUI();
+
+    saveGame();
+
+};
+
+// ----------------------------
+// Reset
+// ----------------------------
+
+resetButton.onclick = function(){
+
+    if(!confirm("Delete ALL progress?")) return;
 
     localStorage.clear();
 
@@ -75,11 +142,19 @@ resetButton.onclick = function () {
 // UI
 // ----------------------------
 
-function updateUI() {
+function updateUI(){
 
-    coinsText.textContent = coins + " Coins";
+    coinsText.textContent = Math.floor(coins) + " Coins";
+
     powerText.textContent = power;
+
     costText.textContent = cost;
+
+    rebirthText.textContent = rebirths;
+
+    rebirthCostText.textContent = Math.floor(rebirthCost);
+
+    boostText.textContent = coinMultiplier.toFixed(2) + "x";
 
 }
 
@@ -87,53 +162,62 @@ function updateUI() {
 // Floating Text
 // ----------------------------
 
-function createFloatingText(text) {
+function createFloatingText(text){
 
-    const div = document.createElement("div");
+    const div=document.createElement("div");
 
-    div.className = "float";
+    div.className="float";
 
-    div.textContent = text;
+    div.textContent=text;
 
-    div.style.left = "170px";
-    div.style.top = "170px";
+    div.style.left="170px";
+
+    div.style.top="170px";
 
     floating.appendChild(div);
 
-    setTimeout(function () {
+    setTimeout(function(){
 
         div.remove();
 
-    }, 800);
+    },800);
 
 }
 
 // ----------------------------
-// Saving
+// Save
 // ----------------------------
 
-function saveGame() {
+function saveGame(){
 
-    localStorage.setItem("coins", coins);
-    localStorage.setItem("power", power);
-    localStorage.setItem("cost", cost);
+    localStorage.setItem("coins",coins);
+    localStorage.setItem("power",power);
+    localStorage.setItem("cost",cost);
 
-    if (typeof eggCost !== "undefined")
-        localStorage.setItem("eggCost", eggCost);
+    localStorage.setItem("rebirths",rebirths);
+    localStorage.setItem("rebirthCost",rebirthCost);
+    localStorage.setItem("coinMultiplier",coinMultiplier);
 
-    if (typeof pets !== "undefined")
-        localStorage.setItem("pets", JSON.stringify(pets));
+    if(typeof eggCost!=="undefined")
+        localStorage.setItem("eggCost",eggCost);
+
+    if(typeof pets!=="undefined")
+        localStorage.setItem("pets",JSON.stringify(pets));
 
 }
 
 // ----------------------------
-// Loading
+// Load
 // ----------------------------
 
-function loadGame() {
+function loadGame(){
 
     coins = Number(localStorage.getItem("coins")) || 0;
     power = Number(localStorage.getItem("power")) || 1;
     cost = Number(localStorage.getItem("cost")) || 50;
+
+    rebirths = Number(localStorage.getItem("rebirths")) || 0;
+    rebirthCost = Number(localStorage.getItem("rebirthCost")) || 1000;
+    coinMultiplier = Number(localStorage.getItem("coinMultiplier")) || 1;
 
 }
