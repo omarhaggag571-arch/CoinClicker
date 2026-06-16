@@ -1,1124 +1,454 @@
+/* =====================================
+   Coin Clicker - style.css
+   Clean, responsive, game-style UI
+===================================== */
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
 }
 
-body{
-
-    background:
-    linear-gradient(135deg,#0F172A,#1E293B,#111827);
-
-    font-family:Trebuchet MS,sans-serif;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    min-height:100vh;
-
-    color:white;
-
-}
-
-#game{
-
-    width:460px;
-
-    background:#1F2937;
-
-    border-radius:22px;
-
-    padding:28px;
-
-    box-shadow:
-    0 15px 40px rgba(0,0,0,.45);
-
-    text-align:center;
-
-    position:relative;
-
-}
-
-h1{
-
-    font-size:42px;
-
-    margin-bottom:15px;
-
-    color:white;
-
-    letter-spacing:1px;
-
-}
-
-#coins{
-
-    font-size:42px;
-
-    color:#FFD54A;
-
-    margin-bottom:25px;
-
-    font-weight:bold;
-
-    text-shadow:
-    0 0 10px rgba(255,215,0,.35);
-
-}
-
-/* =========================
-   COIN BUTTON
-========================= */
-
-#coinButton{
-
-    width:220px;
-
-    height:220px;
-
-    border-radius:50%;
-
-    border:none;
-
-    cursor:pointer;
-
-    font-size:95px;
-
-    background:
-    radial-gradient(circle at 30% 30%,
-    #FFF4A5,
-    #FFD43B 45%,
-    #E0A800 100%);
-
-    box-shadow:
-
-    0 12px #B8860B,
-
-    0 20px 35px rgba(255,215,0,.45);
-
-    transition:.12s;
-
-    margin-bottom:35px;
-
-}
-
-#coinButton:hover{
-
-    transform:scale(1.05);
-
-}
-
-#coinButton:active{
-
-    transform:scale(.94);
-
-    box-shadow:
-
-    0 6px #B8860B,
-
-    0 8px 18px rgba(255,215,0,.25);
-
-}
-
-/* =========================
-PANELS
-========================= */
-
-.panel{
-
-    margin-top:20px;
-
-    padding:18px;
-
-    border-radius:18px;
-
-    background:#2B3648;
-
-    box-shadow:
-
-    inset 0 1px rgba(255,255,255,.06),
-
-    0 6px 18px rgba(0,0,0,.25);
-
-}
-
-.panel h2{
-
-    margin-bottom:15px;
-
-    font-size:28px;
-
-}
-
-.panel p{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    margin:12px 0;
-
-    font-size:22px;
-
-}
-
-/* =========================
-BUTTONS
-========================= */
-
-#upgrade,
-#eggButton{
-
-    width:100%;
-
-    height:58px;
-
-    border:none;
-
-    border-radius:14px;
-
-    font-size:24px;
-
-    color:white;
-
-    cursor:pointer;
-
-    transition:.12s;
-
-    margin-top:18px;
-
-}
-
-#upgrade{
-
-    background:#2ECC71;
-
-}
-
-#eggButton{
-
-    background:#3498DB;
-
-}
-
-#upgrade:hover,
-#eggButton:hover{
-
-    transform:translateY(-3px);
-
-    filter:brightness(1.08);
-
-}
-
-#upgrade:active,
-#eggButton:active{
-
-    transform:scale(.97);
-
-}
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+html{
+    scroll-behavior:smooth;
 }
 
 body{
-
-    background:
-    linear-gradient(135deg,#08111F,#14233D,#0B1220);
-
-    background-size:300% 300%;
-
-    animation:bgMove 12s ease infinite;
-
-    font-family:Trebuchet MS,sans-serif;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:flex-start;
-
+    font-family: Arial, Helvetica, sans-serif;
     min-height:100vh;
-
-    overflow-y:auto;
-
+    color:#ffffff;
     overflow-x:hidden;
-
-    color:white;
-
+    background:
+        radial-gradient(circle at top, #2b5aa8 0%, #152844 45%, #09111e 100%);
     position:relative;
-
-    padding:30px 0;
-
 }
-/* Animated Stars */
 
+/* Background stars */
 body::before{
-
     content:"";
-
     position:fixed;
-
     inset:0;
-
     pointer-events:none;
-
-    opacity:.18;
-
-    background-image:
-
-    radial-gradient(circle,#ffffff 1px,transparent 1px);
-
-    background-size:55px 55px;
-
-    animation:stars 30s linear infinite;
-
+    opacity:0.18;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.9) 1px, transparent 1px);
+    background-size: 70px 70px;
+    animation: starsMove 45s linear infinite;
 }
 
-@keyframes stars{
-
-from{
-
-transform:translateY(0px);
-
+@keyframes starsMove{
+    from{ transform:translateY(0); }
+    to{ transform:translateY(120px); }
 }
 
-to{
-
-transform:translateY(120px);
-
-}
-
-}
-
-@keyframes bgMove{
-
-0%{
-
-background-position:0% 50%;
-
-}
-
-50%{
-
-background-position:100% 50%;
-
-}
-
-100%{
-
-background-position:0% 50%;
-
-}
-
+#page{
+    width:min(1500px, 95%);
+    margin:0 auto;
+    padding:24px;
+    display:grid;
+    grid-template-columns: 1fr 290px;
+    gap:24px;
+    align-items:start;
 }
 
 #game{
+    min-width:0;
+}
 
-    width:470px;
-
-    background:rgba(31,41,55,.96);
-
+/* Top bar */
+#topBar{
+    background: rgba(20, 30, 50, 0.78);
+    backdrop-filter: blur(16px);
+    border:1px solid rgba(255,255,255,0.08);
     border-radius:24px;
+    padding:22px;
+    box-shadow: 0 12px 28px rgba(0,0,0,0.28);
+}
 
-    padding:30px;
-
+#logo{
     text-align:center;
-
-    position:relative;
-
-    overflow:hidden;
-
-    border:2px solid rgba(255,255,255,.05);
-
-    box-shadow:
-
-    0 0 60px rgba(0,0,0,.55),
-
-    inset 0 1px rgba(255,255,255,.05);
-
-}
-
-#game::before{
-
-    content:"";
-
-    position:absolute;
-
-    left:-60%;
-
-    top:0;
-
-    width:50%;
-
-    height:100%;
-
-    background:
-
-    linear-gradient(
-
-        90deg,
-
-        transparent,
-
-        rgba(255,255,255,.08),
-
-        transparent
-
-    );
-
-    transform:skewX(-25deg);
-
-    animation:shine 6s infinite;
-
-}
-
-@keyframes shine{
-
-0%{
-
-left:-70%;
-
-}
-
-100%{
-
-left:170%;
-
-}
-
-}
-
-h1{
-
-    font-size:44px;
-
-    letter-spacing:1px;
-
     margin-bottom:18px;
-
-    text-shadow:
-
-    0 0 15px rgba(255,255,255,.15);
-
 }
 
-#coins{
-
-    font-size:44px;
-
-    color:#FFD84D;
-
-    font-weight:bold;
-
-    margin-bottom:28px;
-
-    text-shadow:
-
-    0 0 15px gold;
-
+#logo h1{
+    font-size:42px;
+    letter-spacing:1px;
+    line-height:1.1;
 }
 
-/* =========================
-COIN
-========================= */
+#stats{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:16px;
+}
+
+.stat{
+    background: rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.06);
+    border-radius:18px;
+    padding:16px;
+    text-align:center;
+    box-shadow: inset 0 1px rgba(255,255,255,0.05);
+}
+
+.stat small{
+    display:block;
+    font-size:12px;
+    letter-spacing:2px;
+    color:#9db9ff;
+    margin-bottom:8px;
+}
+
+.stat span{
+    display:block;
+    font-size:28px;
+    font-weight:700;
+    color:#ffd84d;
+}
+
+/* Center coin */
+#center{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:34px 0;
+}
+
+#coinArea{
+    position:relative;
+    width:fit-content;
+}
 
 #coinButton{
-
-    width:230px;
-
-    height:230px;
-
+    width:320px;
+    height:320px;
     border:none;
-
     border-radius:50%;
-
     cursor:pointer;
-
-    font-size:100px;
-
-    position:relative;
-
-    overflow:hidden;
-
-    margin-bottom:35px;
-
+    font-size:126px;
+    color:#ffffff;
     background:
-
-    radial-gradient(circle at 30% 30%,
-
-    #FFF8B0,
-
-    #FFD53D 40%,
-
-    #F5B301 70%,
-
-    #C88700 100%);
-
+        radial-gradient(circle at 30% 30%, #fff8c1 0%, #ffd84d 38%, #f0b400 72%, #c98700 100%);
     box-shadow:
-
-    0 12px #9E6C00,
-
-    0 0 35px rgba(255,215,0,.45);
-
-    transition:.12s;
-
+        0 0 60px rgba(255,215,0,0.38),
+        inset 0 10px 18px rgba(255,255,255,0.28),
+        0 16px 0 #9c6900,
+        0 28px 40px rgba(0,0,0,0.28);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+    position:relative;
+    overflow:hidden;
+    animation: coinFloat 3s ease-in-out infinite;
 }
 
 #coinButton:hover{
-
-    transform:scale(1.06);
-
+    transform:scale(1.04);
+    filter:brightness(1.03);
 }
 
 #coinButton:active{
-
-    transform:scale(.93);
-
+    transform:scale(0.95);
     box-shadow:
-
-    0 5px #9E6C00,
-
-    0 0 12px rgba(255,215,0,.25);
-
+        0 0 35px rgba(255,215,0,0.30),
+        inset 0 10px 18px rgba(255,255,255,0.22),
+        0 8px 0 #9c6900,
+        0 16px 24px rgba(0,0,0,0.22);
 }
 
+/* Shine sweep */
 #coinButton::before{
-
     content:"";
-
     position:absolute;
-
-    left:-70%;
-
-    top:0;
-
-    width:45%;
-
-    height:100%;
-
-    background:
-
-    rgba(255,255,255,.4);
-
-    transform:skewX(-25deg);
-
-    animation:coinShine 2.8s infinite;
-
+    top:-40%;
+    left:-130%;
+    width:70%;
+    height:180%;
+    transform:rotate(25deg);
+    background: linear-gradient(to right, transparent, rgba(255,255,255,0.75), transparent);
+    animation: coinShine 3s infinite;
 }
 
 @keyframes coinShine{
-
-0%{
-
-left:-80%;
-
-}
-
-100%{
-
-left:160%;
-
-}
-
-}
-
-/* =========================
-PANELS
-========================= */
-
-.panel{
-
-    margin-top:22px;
-
-    background:#2A3445;
-
-    border-radius:18px;
-
-    padding:18px;
-
-    border:1px solid rgba(255,255,255,.05);
-
-    box-shadow:
-
-    inset 0 1px rgba(255,255,255,.05),
-
-    0 10px 20px rgba(0,0,0,.25);
-
-}
-
-.panel h2{
-
-    margin-bottom:15px;
-
-    font-size:30px;
-
-}
-
-.panel p{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    margin:14px 0;
-
-    font-size:22px;
-
-}
-
-/* =========================
-BUTTONS
-========================= */
-
-#upgrade,
-#eggButton{
-
-    width:100%;
-
-    height:60px;
-
-    border:none;
-
-    border-radius:14px;
-
-    cursor:pointer;
-
-    margin-top:18px;
-
-    color:white;
-
-    font-size:24px;
-
-    font-weight:bold;
-
-    transition:.12s;
-
-}
-
-#upgrade{
-
-    background:#2ECC71;
-
-}
-
-#eggButton{
-
-    background:#3498DB;
-
-}
-
-#upgrade:hover{
-
-    background:#37D97A;
-
-    transform:translateY(-3px);
-
-}
-
-#eggButton:hover{
-
-    background:#45A8FF;
-
-    transform:translateY(-3px);
-
-}
-
-#upgrade:active,
-#eggButton:active{
-
-    transform:scale(.97);
-
-}
-
-/* =========================
-PET LIST
-========================= */
-
-#petList{
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:12px;
-
-    margin-top:10px;
-
-}
-
-#petList div{
-
-    background:#39465B;
-
-    border-radius:14px;
-
-    padding:14px;
-
-    border-left:6px solid #FFD54A;
-
-    font-size:20px;
-
-    font-weight:bold;
-
-    transition:.15s;
-
-    box-shadow:
-
-    0 6px 15px rgba(0,0,0,.25);
-
-}
-
-#petList div:hover{
-
-    transform:translateX(6px);
-
-    background:#44526A;
-
-}
-
-/* Future rarity colors */
-
-.common{
-
-border-left-color:#BFBFBF !important;
-
-}
-
-.rare{
-
-border-left-color:#4DA6FF !important;
-
-}
-
-.epic{
-
-border-left-color:#B84DFF !important;
-
-}
-
-.legendary{
-
-border-left-color:#FFB000 !important;
-
-}
-
-.mythic{
-
-border-left-color:#FF4444 !important;
-
-}
-
-/* =========================
-EGG
-========================= */
-
-#eggButton{
-
-    position:relative;
-
-    overflow:hidden;
-
-}
-
-#eggButton::before{
-
-    content:"✨";
-
-    position:absolute;
-
-    left:14px;
-
-    top:15px;
-
-    animation:eggSparkle 1.8s infinite;
-
-}
-
-@keyframes eggSparkle{
-
-0%{
-
-opacity:0;
-
-transform:scale(.5);
-
-}
-
-50%{
-
-opacity:1;
-
-transform:scale(1.2);
-
-}
-
-100%{
-
-opacity:0;
-
-transform:scale(.5);
-
-}
-
-}
-
-/* =========================
-FLOATING TEXT
-========================= */
-
-#floating{
-
-    position:absolute;
-
-    inset:0;
-
-    pointer-events:none;
-
-    overflow:hidden;
-
-}
-
-.float{
-
-    position:absolute;
-
-    left:175px;
-
-    top:170px;
-
-    color:#FFD84A;
-
-    font-size:34px;
-
-    font-weight:bold;
-
-    text-shadow:
-
-    0 0 10px gold,
-
-    0 0 20px gold;
-
-    animation:floatCoin .9s forwards;
-
-}
-
-@keyframes floatCoin{
-
-0%{
-
-opacity:1;
-
-transform:
-
-translateY(0)
-
-scale(1);
-
-}
-
-100%{
-
-opacity:0;
-
-transform:
-
-translateY(-110px)
-
-scale(1.5);
-
-}
-
-}
-
-/* =========================
-SCROLLBAR
-========================= */
-
-::-webkit-scrollbar{
-
-width:10px;
-
-}
-
-::-webkit-scrollbar-thumb{
-
-background:#FFD54A;
-
-border-radius:20px;
-
-}
-
-/* =========================
-MOBILE
-========================= */
-
-@media(max-width:700px){
-
-body{
-
-padding:15px;
-
-}
-
-#game{
-
-width:100%;
-
-padding:20px;
-
-}
-
-#coinButton{
-
-width:180px;
-
-height:180px;
-
-font-size:80px;
-
-}
-
-h1{
-
-font-size:34px;
-
-}
-
-#coins{
-
-font-size:34px;
-
-}
-
-.panel{
-
-padding:15px;
-
-}
-
-.panel p{
-
-font-size:18px;
-
-}
-
-}
-
-/* =========================
-SMALL ANIMATIONS
-========================= */
-
-.panel{
-
-animation:fadeUp .5s;
-
-}
-
-@keyframes fadeUp{
-
-from{
-
-opacity:0;
-
-transform:translateY(15px);
-
-}
-
-to{
-
-opacity:1;
-
-transform:translateY(0);
-
-}
-
-}
-
-#coinButton{
-
-animation:coinFloat 3s ease-in-out infinite;
-
+    0%{ left:-150%; }
+    100%{ left:170%; }
 }
 
 @keyframes coinFloat{
-
-0%{
-
-transform:translateY(0px);
-
+    0%,100%{ transform:translateY(0); }
+    50%{ transform:translateY(-6px); }
 }
 
-50%{
-
-transform:translateY(-6px);
-
+#floating{
+    position:absolute;
+    inset:0;
+    pointer-events:none;
 }
 
-100%{
-
-transform:translateY(0px);
-
+/* Bottom panels */
+#bottomPanels{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:20px;
 }
 
+.panel{
+    background: rgba(20, 30, 50, 0.78);
+    backdrop-filter: blur(16px);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:22px;
+    padding:20px;
+    box-shadow: 0 12px 28px rgba(0,0,0,0.22);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-#reset{
 
+.panel:hover{
+    transform:translateY(-4px);
+    box-shadow: 0 16px 34px rgba(0,0,0,0.28);
+}
+
+.panel h2{
+    text-align:center;
+    font-size:28px;
+    margin-bottom:18px;
+    line-height:1.1;
+}
+
+.panel p{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    font-size:18px;
+    margin-bottom:16px;
+}
+
+.panel span{
+    color:#ffd84d;
+    font-weight:700;
+}
+
+/* Buttons */
+button{
     width:100%;
-
-    height:55px;
-
-    margin-top:12px;
-
     border:none;
-
     border-radius:14px;
-
-    background:#E74C3C;
-
-    color:white;
-
-    font-size:22px;
-
-    font-weight:bold;
-
     cursor:pointer;
-
-    transition:.15s;
-
+    color:#ffffff;
+    font-size:18px;
+    font-weight:700;
+    padding:14px 12px;
+    transition: transform 0.15s ease, filter 0.15s ease, box-shadow 0.15s ease;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.22);
 }
 
-#reset:hover{
-
-    background:#FF5A4A;
-
+button:hover{
+    transform:translateY(-2px);
+    filter:brightness(1.05);
 }
 
-#reset:active{
-
-    transform:scale(.97);
-
+button:active{
+    transform:scale(0.97);
 }
-/* =========================
-REBIRTH PANEL
-========================= */
+
+#upgrade{
+    background: linear-gradient(45deg, #22c55e, #39e27d);
+}
+
+#eggButton{
+    background: linear-gradient(45deg, #2f8bff, #59b5ff);
+    margin-top:10px;
+}
+
+#reset{
+    background: linear-gradient(45deg, #df4b41, #ff6d66);
+    margin-top:10px;
+}
+
+/* Sidebar */
+#sideBar{
+    min-width:0;
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
 
 #rebirthPanel{
-
-    position:fixed;
-
-    right:25px;
-
-    top:50%;
-
-    transform:translateY(-50%);
-
-    width:220px;
-
-    background:#2A3445;
-
-    border-radius:20px;
-
-    padding:20px;
-
-    text-align:center;
-
-    box-shadow:
-
-    0 10px 30px rgba(0,0,0,.45);
-
-    border:2px solid rgba(255,255,255,.05);
-
+    background: rgba(20, 30, 50, 0.78);
+    backdrop-filter: blur(16px);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:22px;
+    padding:22px;
+    box-shadow: 0 12px 28px rgba(0,0,0,0.22);
+    position:sticky;
+    top:24px;
 }
 
 #rebirthPanel h2{
-
-    margin-bottom:20px;
-
+    text-align:center;
     font-size:30px;
-
+    margin-bottom:18px;
 }
 
 #rebirthPanel p{
-
+    text-align:center;
     margin:18px 0;
-
-    font-size:22px;
-
+    font-size:18px;
+    line-height:1.35;
 }
 
 #rebirthPanel span{
-
     display:block;
-
     margin-top:6px;
-
-    color:#FFD84A;
-
-    font-size:28px;
-
-    font-weight:bold;
-
+    color:#ffd84d;
+    font-size:30px;
+    font-weight:700;
 }
 
 #rebirthButton{
-
-    width:100%;
-
-    height:60px;
-
-    margin-top:20px;
-
-    border:none;
-
-    border-radius:14px;
-
-    cursor:pointer;
-
-    background:#A020F0;
-
-    color:white;
-
-    font-size:24px;
-
-    font-weight:bold;
-
-    transition:.15s;
-
+    background: linear-gradient(45deg, #9b59b6, #c06be8);
 }
 
 #rebirthButton:hover{
-
-    background:#B53CFF;
-
-    transform:translateY(-3px);
-
+    filter:brightness(1.08);
 }
 
-#rebirthButton:active{
-
-    transform:scale(.97);
-
+/* Pets */
+#petsPanel{
+    display:flex;
+    flex-direction:column;
 }
 
+#petList{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    max-height:330px;
+    overflow-y:auto;
+    padding-right:6px;
+}
+
+#petList div{
+    background: rgba(255,255,255,0.07);
+    border-left:5px solid #ffd84d;
+    border-radius:14px;
+    padding:14px;
+    transition: transform 0.15s ease, background 0.15s ease;
+}
+
+#petList div:hover{
+    transform:translateX(5px);
+    background: rgba(255,255,255,0.11);
+}
+
+/* Floating text */
+.float{
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%, -50%);
+    color:#ffd84d;
+    font-size:34px;
+    font-weight:700;
+    text-shadow: 0 0 12px rgba(255,215,0,0.9);
+    animation: floatUp 0.8s forwards;
+    pointer-events:none;
+    white-space:nowrap;
+}
+
+@keyframes floatUp{
+    from{
+        opacity:1;
+        transform:translate(-50%, -50%) scale(1);
+    }
+    to{
+        opacity:0;
+        transform:translate(-50%, -180%) scale(1.35);
+    }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar{
+    width:10px;
+}
+
+::-webkit-scrollbar-track{
+    background:#11213b;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#ffd84d;
+    border-radius:999px;
+}
+
+/* Responsive */
 @media(max-width:1100px){
-
-    #rebirthPanel{
-
-        position:static;
-
-        transform:none;
-
-        width:100%;
-
-        margin-bottom:20px;
-
+    #page{
+        grid-template-columns:1fr;
     }
 
+    #sideBar{
+        order:-1;
+    }
+
+    #rebirthPanel{
+        position:static;
+    }
+
+    #bottomPanels{
+        grid-template-columns:1fr;
+    }
+
+    #coinButton{
+        width:240px;
+        height:240px;
+        font-size:96px;
+    }
+
+    #stats{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:700px){
+    #page{
+        width:100%;
+        padding:12px;
+    }
+
+    #logo h1{
+        font-size:30px;
+    }
+
+    .stat{
+        padding:14px;
+    }
+
+    .stat span{
+        font-size:22px;
+    }
+
+    #coinButton{
+        width:190px;
+        height:190px;
+        font-size:78px;
+    }
+
+    .panel{
+        padding:16px;
+    }
+
+    .panel h2{
+        font-size:22px;
+    }
+
+    .panel p{
+        font-size:16px;
+    }
+
+    button{
+        font-size:17px;
+        padding:12px;
+    }
+
+    #petList{
+        max-height:220px;
+    }
 }
